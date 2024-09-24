@@ -60,8 +60,8 @@ export default function Welcome({ goToNextPage }) {
 
       {!isLoading && (
         <motion.div
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.2,  boxShadow: "0px 0px 80px 10px #101",}}
+          whileTap={{ scale: 0.9,  boxShadow: "0px 0px 80px 10px #fff", }}
           ref={ref1}
           className="box"
           style={{
