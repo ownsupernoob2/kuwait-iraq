@@ -23,7 +23,7 @@ function ProductImage({ id, onExpand }) {
   );
 }
 
-export default function BabySaddam() {
+export default function BabySaddam({goToNextPage}) {
   const [productIds, setProductIds] = useState([`${require("../assets/baby.png")}`,`${require("../assets/saddam.png")}`, `${require("../assets/iraq.png")}`]);
   const [primaryProduct, setPrimaryProduct] = useState(`${require("../assets/baby.png")}`);
   const [hasClicked, setHasClicked] = useState(false);
@@ -284,16 +284,12 @@ export default function BabySaddam() {
             <p>
               Saddam Hussein was born in Al-Awja, Iraq, on April 28, 1937. He
               served as the fifth President of Iraq from July 16, 1979, until
-              April 9, 2003. He was a prominent member of the Arab Socialist
-              Ba'ath Party and the Baghdad-based Ba'ath Party, which espoused a
+              April 9, 2003. He was a member of the Arab Socialist
+              Ba'ath Party and the Baghdad-based Ba'ath Party, which was a
               mix of Arab nationalism and socialism.
             </p>
             <p>
-              Hussein's leadership was marked by the nationalization of Iraq's
-              oil industry, and he is also known for leading Iraq through the
-              Iran-Iraq War and the Gulf War. He ruled Iraq for nearly 24 years
-              before being overthrown by a coalition led by the United States in
-              2003.
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
             </p>
           </motion.div>
 
@@ -318,7 +314,11 @@ export default function BabySaddam() {
                 ))}
               </AnimatePresence>
             </aside>
+
           </div>
+          <button onClick={goToNextPage}>
+                how it works then
+          </button>
         </main>
       )}
     </div>

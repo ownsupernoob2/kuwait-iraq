@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Welcome from "./screens/Welcome";
 import BabySaddam from "./screens/BabySaddam";
-import Iraq from "./screens/Iraq";
-import Kuwait from "./screens/Kuwait";
+import IraqKuwait from "./screens/IraqKuwait";
 import RelationshipCause from "./screens/RelationshipCause";
 import Invasion from "./screens/Invasion";
 import Aftermath from "./screens/Aftermath";
@@ -26,8 +25,7 @@ export default function App() {
   const pages = [
     <Welcome key="Welcome" goToNextPage={goToNextPage} />,
     <BabySaddam key="BabySaddam" goToNextPage={goToNextPage} />,
-    <Iraq key="Iraq" goToNextPage={goToNextPage} />,
-    <Kuwait key="Kuwait" goToNextPage={goToNextPage} />,
+    <IraqKuwait key="IraqKuwait" goToNextPage={goToNextPage} />,
     <RelationshipCause key="RelationshipCause" goToNextPage={goToNextPage} />,
     <Invasion key="Invasion" goToNextPage={goToNextPage} />,
     <Aftermath key="Aftermath" goToNextPage={goToNextPage} />,

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import "../App.css";
 
 
-export default function Iraq() {
+export default function IraqKuwait() {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   return (
     <div style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
     <motion.img
