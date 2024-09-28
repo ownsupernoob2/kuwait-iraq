@@ -1,104 +1,70 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import "../styles.css";
-import { useFollowPointer } from "../components/use-follow-pointer";
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import '../styles.css';
 
-export default function Invasion() {
-  const [currentText, setCurrentText] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-  const [showYesBox, setShowYesBox] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); 
-  const ref1 = useRef(null);
-  const { x, y } = useFollowPointer(ref1);
+const conflictDetails = [
+  {
+    title: 'What Happened',
+    description: 'The Iraq-Kuwait conflict began on August 2, 1990, when Iraq, led by Saddam Hussein, invaded Kuwait.',
+  },
+  {
+    title: 'How It Happened',
+    description: 'Iraq justified the invasion by claiming that Kuwait was stealing Iraqi oil through slant drilling.',
+  },
+  {
+    title: 'Why It Happened',
+    description: 'Economic pressures, debt from the Iran-Iraq War, and disputes over oil resources led to the invasion.',
+  },
+];
 
-  const texts = [
-    "Welcome",
-    "This site talks about Iraq's invasion of Kuwait",
-    "Are you ready?",
-  ];
+const Invasion = ({ goToNextPage }) => {
+  const [selectedDetail, setSelectedDetail] = useState(conflictDetails[0]);
 
-  useEffect(() => {
-    if (currentText < texts.length - 1) {
-      const visibilityTimer = setTimeout(() => {
-        setIsVisible(false);
-      }, 4000);
-
-      const textSwitchTimer = setTimeout(() => {
-        setCurrentText((prev) => prev + 1);
-        setIsVisible(true);
-      }, 5000);
-
-      return () => {
-        clearTimeout(visibilityTimer);
-        clearTimeout(textSwitchTimer);
-      };
-    } else {
-      const yesBoxTimer = setTimeout(() => {
-        setShowYesBox(true);
-      }, 2000);
-
-      return () => clearTimeout(yesBoxTimer);
-    }
-  }, [currentText]);
-
-  const handleYesClick = () => {
-    setIsLoading(true); // Start loading animation
-    setTimeout(() => {
-      // Simulate some process
-      setIsLoading(false); 
-      alert("Process Complete!"); // This is just for demonstration; you can handle navigation or other logic here
-    }, 3000); // Loading for 3 seconds
+  const handleSelectDetail = (detail) => {
+    setSelectedDetail(detail);
   };
 
   return (
-    <section>
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            key={currentText}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: currentText < texts.length - 1 ? 0 : 1 }}
-            transition={{ duration: 1 }}
-            style={{ fontSize: "24px", textAlign: "center", margin: "20px 0" }}
-          >
-            {texts[currentText]}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {!isLoading && ( // Show "Yes" button when not loading
-        <motion.div
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          ref={ref1}
-          className="box"
-          style={{
-            x,
-            y,
-            visibility:
-              currentText === texts.length - 1 && showYesBox ? "" : "hidden",
-          }}
-        >
-          <div
-            style={{ cursor: "pointer" }}
-          >
-            <p
-              style={{
-                color: "#444444",
-                textAlign: "center",
-                paddingTop: 4.5,
-                alignSelf: "center",
-                fontSize: 14,
-              }}
+    <div className="conflict-overview">
+      <h1 className="main-title">Iraq-Kuwait Invasion</h1>
+      <div className="details-wrapper">
+        <div className="left-column">
+          <h2>Select a Topic</h2>
+          {conflictDetails.map((detail) => (
+            <motion.button
+              key={detail.title}
+              className="detail-button"
+              onClick={() => handleSelectDetail(detail)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Yes
-            </p>
-          </div>
-        </motion.div>
-      )}
+              {detail.title}
+            </motion.button>
+          ))}
+        </div>
+        
+        <div className="right-column">
+          <AnimatePresence>
+            <motion.div
+              key={selectedDetail.title}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.5 }}
+              className="detail-info"
+            >
+              <h2>{selectedDetail.title}</h2>
+              <p>{selectedDetail.description}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
 
-     
-    </section>
+      <button onClick={goToNextPage} className="next-button">
+        Next Section
+      </button>
+    </div>
   );
-}
+};
+
+export default Invasion;

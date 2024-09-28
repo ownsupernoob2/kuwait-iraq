@@ -24,7 +24,7 @@ function ProductImage({ id, onExpand }) {
 }
 
 export default function BabySaddam({goToNextPage}) {
-  const [productIds, setProductIds] = useState([`${require("../assets/baby.png")}`,`${require("../assets/saddam.png")}`, `${require("../assets/iraq.png")}`]);
+  const [productIds, setProductIds] = useState([`${require("../assets/baby.png")}`,`https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.0fIQ44mZdGrgl83ZE7Cq8wHaEc%26pid%3DApi&f=1&ipt=1332bc97532e22ea4388e94198e8c389c8cfbf910d04da5a0f002f5e6d6ef032&ipo=images`, `${require("../assets/iraq.png")}`]);
   const [primaryProduct, setPrimaryProduct] = useState(`${require("../assets/baby.png")}`);
   const [hasClicked, setHasClicked] = useState(false);
   const [bye, setBye] = useState(false);
@@ -33,10 +33,6 @@ export default function BabySaddam({goToNextPage}) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
   const [isEating, setIsEating] = useState(false);
   const randIMG = [
-    "https://purepng.com/public/uploads/large/purepng.com-bananafruitsyellowfruit-981524754290sbcsq.png",
-    "https://www.pngall.com/wp-content/uploads/2016/05/Strawberry-High-Quality-PNG.png",
-    "https://pngimg.com/uploads/apple/apple_PNG12484.png",
-    "https://pngimg.com/uploads/lego/lego_PNG15.png",
     "https://www.transparentpng.com/thumb/pineapple/67gPxX-pineapple-png-image.png",
   ];
 

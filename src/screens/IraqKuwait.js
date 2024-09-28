@@ -2,21 +2,46 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { Map } from 'lucide-react';
 import '../IraqKuwaitRegion.css';
-
+import Gallery from '../components/Gallery';
 const placeholderImages = {
   iraq: 'https://www.worldatlas.com/r/w960-q80/img/flag/iq-flag.jpg',
   kuwait: 'https://www.worldatlas.com/r/w960-q80/img/flag/kw-flag.jpg',
-  region: '/api/placeholder/600/400'
+  region: require("../assets/region.png")
 };
 
-const IraqKuwait = () => {
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [isMapOpen, setIsMapOpen] = useState(false);
+function Image(id) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
 
+  return (
+    <section>
+      <motion.div
+        initial={false}
+        animate={
+          isLoaded && isInView
+            ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+            : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+        }
+        transition={{ duration: 1, delay: 1 }}
+        viewport={{ once: true }}
+        onViewportEnter={() => setIsInView(true)}
+      >
+        <img src={`/${id}.jpg`} alt="" onLoad={() => setIsLoaded(true)} />
+      </motion.div>
+    </section>
+  );
+}
+
+const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
+const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
+const IraqKuwait = ({ goToNextPage }) => {
+  const [isMapOpen, setIsMapOpen] = useState(false);
+  
   const countries = [
     { name: 'Iraq', description: 'A country in Western Asia, bordered by Turkey to the north, Iran to the east, Kuwait to the southeast, Saudi Arabia to the south, Jordan to the southwest and Syria to the west...' },
     { name: 'Kuwait', description: 'A country in Western Asia. Situated in the northern edge of Eastern Arabia at the tip of the Persian Gulf, it shares borders with Iraq to the north and Saudi Arabia to the south...' },
   ];
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   const mapVariants = {
     closed: { opacity: 0, scale: 0.8 },
@@ -31,22 +56,13 @@ const IraqKuwait = () => {
 
   return (
     <div className="iraq-kuwait-container">
-      <h1 className="main-title">Iraq-Kuwait Region Explorer</h1>
+      <h1 className="main-title">Iraq & Kuwait</h1>
 
       <div className="content-wrapper">
         <div className="left-column">
-          {/* <motion.button
-            className="map-toggle-btn"
-            onClick={() => setIsMapOpen(!isMapOpen)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Map className="map-icon" />
-            {isMapOpen ? 'Close Map' : 'Open Map'}
-          </motion.button> */}
+       
 
           <AnimatePresence>
-            {isMapOpen && (
               <motion.div
                 variants={mapVariants}
                 initial="closed"
@@ -56,7 +72,7 @@ const IraqKuwait = () => {
               >
                 <img src={placeholderImages.region} alt="Iraq-Kuwait Region" className="region-map" />
               </motion.div>
-            )}
+          
           </AnimatePresence>
 
           <div className="country-buttons">
@@ -97,6 +113,57 @@ const IraqKuwait = () => {
           </AnimatePresence>
         </div>
       </div>
+      <main className="bio-section">
+          <motion.h3
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+          >
+            Bad Relationship
+          </motion.h3>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+            className="bio-content"
+          >
+            <p>
+              Saddam Hussein was born in Al-Awja, Iraq, on April 28, 1937. He
+              served as the fifth President of Iraq from July 16, 1979, until
+              April 9, 2003. He was a member of the Arab Socialist
+              Ba'ath Party and the Baghdad-based Ba'ath Party, which was a
+              mix of Arab nationalism and socialism.
+            </p>
+            <p>
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+
+            </p>
+            <p>
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+              blah blah blah balh balh blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+
+            </p>
+          </motion.div>
+
+
+
+
+
+
+    <>
+      {[1, 2, 3, 4, 5].map((image) => (
+        <Image id={image} />
+      ))}
+    </>
+  
+
+           <button onClick={goToNextPage}>
+                how it works then
+          </button> 
+        </main>
     </div>
   );
 };
