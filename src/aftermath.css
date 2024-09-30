@@ -1,0 +1,35 @@
+
+.header2 {
+    position: relative;
+    text-align: center;
+    flex-grow: 1;
+
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/79/BrennendeOelquellenKuwait1991.jpg");
+    height: 100vh;
+    
+    overflow: hidden;
+    padding-left: 200px;
+    padding-right: 200px;
+    display: flex;
+   
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(255, 0, 0);
+  }
+  
+  /* .header {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1s ease-in;
+    z-index: -1;
+  } */

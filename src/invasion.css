@@ -1,0 +1,19 @@
+.info-container{
+    display: flex;
+    flex: 1;
+    padding-Top: 10px;
+    justify-content: 'center';
+}
+.info-container img {
+    width: 900px;
+    height: auto;
+    margin-right: 30px;
+}
+.info-container p {
+    padding-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.conflict-overview{
+    padding: 50px;
+}
