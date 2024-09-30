@@ -7,7 +7,7 @@ import Invasion from "./screens/Invasion";
 import Aftermath from "./screens/Aftermath";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState(1); // Start from page index 0
+  const [currentPage, setCurrentPage] = useState(0); // Start from page index 0
 
   const goToNextPage = () => {
     setCurrentPage((prevPage) =>
